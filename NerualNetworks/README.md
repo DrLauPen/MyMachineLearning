@@ -15,10 +15,14 @@
 
 ### 激活函数
 激活函数用于各层之间,用于增加各层的拟合能力.对于损失函数如果能正确选择较好的损失函数的话,可以很好的提高神经网络的性能.tanh激活函数图像如下:
+
 ![Alt](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ia2ltZy5jZG4uYmNlYm9zLmNvbS9waWMvMjkzODFmMzBlOTI0Yjg5OTRiYjc3Y2FjNjQwNjFkOTUwYjdiZjY5Zg?x-oss-process=image/format,png)
+
 relu损失函数图像如下:
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ia2ltZy5jZG4uYmNlYm9zLmNvbS9waWMvZDc4OGQ0M2Y4Nzk0YTRjMjViNWU0ZGQ5MDJmNDFiZDVhYzZlMzljNg?x-oss-process=image/format,png)
-sigmoid损失函数图像如下:![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ia2ltZy5jZG4uYmNlYm9zLmNvbS9waWMvZDAwOWIzZGU5YzgyZDE1OGRmYjRlNzIxOGEwYTE5ZDhiYzNlNDI2Zg?x-oss-process=image/format,png)
+sigmoid损失函数图像如下:
+
+![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ia2ltZy5jZG4uYmNlYm9zLmNvbS9waWMvZDAwOWIzZGU5YzgyZDE1OGRmYjRlNzIxOGEwYTE5ZDhiYzNlNDI2Zg?x-oss-process=image/format,png)
 
 ### 损失函数
 损失函数是用于衡量整个模型的性能,最熟悉的就是MSE平方差损失函数:
@@ -27,20 +31,31 @@ $$MSE=\frac{1}{n}\sum_{i=0}^n(y_i-f(x_i))^2$$
 $$CrossEntropy = \frac{1}{n}\sum_{i=0}^ny_i*log(f(x_i))$$
 ## 神经网络公式推导
 这里结合后面的代码实战内容,我们仅仅对一层的浅层神经网络进行推导和计算.
+
 ![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly90aW1nc2EuYmFpZHUuY29tL3RpbWc_aW1hZ2UmcXVhbGl0eT04MCZzaXplPWI5OTk5XzEwMDAwJnNlYz0xNTg0MTEzMTEwNzc0JmRpPWIwOTY0ZDEzNmUyNjdjNzk0YjAwMjA2MmJjZjZiMTgzJmltZ3R5cGU9MCZzcmM9aHR0cDovLzViMDk4OGU1OTUyMjUuY2RuLnNvaHVjcy5jb20vaW1hZ2VzLzIwMTgxMDIwL2YxNDgyNDI4YTIyMDRjMTliZjZmODhiZTRjODMwOGQ1LmpwZWc?x-oss-process=image/format,png)
+
 ### 前向传播
 因为只有一层,所以前向传播较为简单.
-$$y'_k = \frac{e^{w_kx_k}}{\sum_{i=0}^ne^{w_ix_i}}$$
+$$
+y'_k = \frac{e^{w_kx_k}}{\sum_{i=0}^ne^{w_ix_i}}
+$$
 同时计算对应的损失函数:
-$$Loss = \sum_{i=0}^ny_k*log(y'_k)$$
+$$
+Loss = \sum_{i=0}^ny_k*log(y'_k)
+$$
+
 
 ### 梯度下降
 梯度下降算法是神经网络的核心,也是其拟合能力极强的原因.其主要的原理是借助于梯度的局部变化最大来尽可能的拟合对应的损失函数的最小值.
 将梯度下降用到我们的权重更新中就可以完成整个网络.
 首先可以看到交叉熵函数仅仅对标签为1的类别进行计算值,因此可以计算如下:
-$$Loss =log(y')$$
+$$
+Loss =log(y')
+$$
 计算$y'$偏导如下:
-$$\frac{\partial Loss}{\partial y'} = \frac{1}{y'}$$
+$$
+\frac{\partial Loss}{\partial y'} = \frac{1}{y'}
+$$
 但因为我们需要更新的是参数$w$,因此再对$w$求偏导.当k等于i的时候:
 $$
 \begin{aligned}
