@@ -27,11 +27,11 @@ sigmoid损失函数图像如下:
 ### 损失函数
 损失函数是用于衡量整个模型的性能,最熟悉的就是MSE平方差损失函数:
 
-![alt](http://latex.codecogs.com/gif.latex?\\MSE=\frac{1}{n}\sum_{i=0}^n(y_i-f(x_i)^2)
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.17 AM.png" alt="alt" style="zoom:50%;" />
 
 同样还有交叉熵损失函数:
 
-![alt](http://latex.codecogs.com/gif.latex?\\CrossEntropy = \frac{1}{n}\sum_{i=0}^ny_i*log(f(x_i))
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.22 AM.png" alt="alt" style="zoom:50%;" />
 
 
 
@@ -43,84 +43,58 @@ sigmoid损失函数图像如下:
 ### 前向传播
 因为只有一层,所以前向传播较为简单.
 
-![alt](http://latex.codecogs.com/gif.latex?\\y'_k = \frac{e^{w_kx_k}}{\sum_{i=0}^ne^{w_ix_i}})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.27 AM.png" alt="alt" style="zoom:50%;" />
 
 
 
 同时计算对应的损失函数
 
-![alt](http://latex.codecogs.com/gif.latex?\\Loss = \sum_{i=0}^ny_k*log(y'_k))
-
-
-
-
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.31 AM.png" alt="alt" style="zoom:50%;" />
 
 ### 梯度下降
 梯度下降算法是神经网络的核心,也是其拟合能力极强的原因.其主要的原理是借助于梯度的局部变化最大来尽可能的拟合对应的损失函数的最小值.
 将梯度下降用到我们的权重更新中就可以完成整个网络.
 首先可以看到交叉熵函数仅仅对标签为1的类别进行计算值,因此可以计算如下
 
-![alt](http://latex.codecogs.com/gif.latex?\\Loss =log(y'))
-
-
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.35 AM.png" alt="alt" style="zoom:50%;" />
 
 计算y'偏导如下:
 
-![alt](http://latex.codecogs.com/gif.latex?\\\frac{\partial Loss}{\partial y'} = \frac{1}{y'})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.39 AM.png" alt="alt" style="zoom:50%;" />
+
+
 
 但因为我们需要更新的是参数w,因此再对w求偏导.当k等于i的时候:
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial y'}{\partial z} &=\frac{\partial(\frac{e^{z_{k}}}{\sum_{i=1}^{n} e^{z_i}})}{\partial z} \\
-&=\frac{e^{z_k}\sum_{i=1}^{n}e^{z_i}-(e^{z_k})^2}{(\sum_{i=1}^{n}e^{z_i})^2} \\ 
-&=y'_k(1-y'_k)
-\end{aligned})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.44 AM.png" alt="alt" style="zoom:50%;" />
 
 
 
 当i不等于k的时候
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial y'}{\partial z} &=\frac{\partial(\frac{e^{z_{k}}}{\sum_{i=1}^{n} e^{z_i}})}{\partial z} \\
-&=\frac{-e^{z_t}*e^{z_i}}{(\sum_{i=1}^{n}e^{z_i})^2} \\ 
-&=y'_t*y'_i
-\end{aligned})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.50 AM.png" alt="alt" style="zoom:50%;" />
 
 
 
 结合上面的求导得到,当i=k时
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial Loss}{\partial y'} \frac{\partial y'}{\partial z} 
-&=(1-y'_k)
-\end{aligned})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.55 AM.png" alt="alt" style="zoom:50%;" />
 
 当i!=k时:
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial Loss}{\partial y'} \frac{\partial y'}{\partial z} 
-&=y'_k
-\end{aligned})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.10.59 AM.png" alt="alt" style="zoom:50%;" />
 
 进一步的对w进行求导得到最后的导数,当i=k的时候
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial Loss}{\partial w} 
-&=(1-y'_k)*w
-\end{aligned})
-
-
+<img src=".\pic\Screen Shot 2020-03-24 at 11.11.04 AM.png" alt="alt" style="zoom:50%;" />
 
 当i!=k时,有 
 
-![alt](http://latex.codecogs.com/gif.latex?\\\begin{aligned}
-\frac{\partial Loss}{\partial w} 
-&=y'_k*w
-\end{aligned})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.11.08 AM.png" alt="alt" style="zoom:50%;" />
 
 通过上面计算得到的公式,用于更新对应的权重w,设定学习率为a:
 
-![alt](http://latex.codecogs.com/gif.latex?\\w_t=w_{t-1}+a*\frac{\partial Loss}{\partial w})
+<img src=".\pic\Screen Shot 2020-03-24 at 11.11.14 AM.png" alt="alt" style="zoom:50%;" />
 
 
 ## 代码实战
