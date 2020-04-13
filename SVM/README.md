@@ -171,7 +171,7 @@ if __name__ == '__main__':
 
 最后的代码结果:
 
-![.\pic\Screen Shot 2020-03-24 at 7.01.09 PM](./pic/Screen Shot 2020-03-24 at 7.01.09 PM.png)
+![](./pic/Screen Shot 2020-03-24 at 7.01.09 PM.png)
 
 ## 总结
 

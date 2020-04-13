@@ -7,9 +7,7 @@ import torch
 from sklearn.model_selection import StratifiedKFold, train_test_split
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import warnings
-
 warnings.filterwarnings('ignore')
-
 
 def Cross_entropy(x, y):
     # 交叉熵损失函数
@@ -26,7 +24,7 @@ def softmax(x):
 
 def sigmoid(x):
     # sigmoid激活函数
-    return 1 / 1 + np.exp(-x)
+    return 1 / (1 + np.exp(-x))
 
 
 def Derivative_sigmoid(x):
